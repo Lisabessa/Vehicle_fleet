@@ -10,7 +10,7 @@
         <div class="container_info">
             <h1>Информационная система автопарка "Toretto"</h1>
             <h2>Автомобили</h2>
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -22,7 +22,13 @@
                 </thead>
 
                 <tbody>
-
+                    <tr th:each="entity: ${listEntities}">
+                        <th th:text="${entity.id}">ID автомобиля отстутсвует</th>
+                        <th th:text="${entity.model}">Модель автомобиля отстутсвует</th>
+                        <th th:text="${entity.manufactureYear}">Год производства автомобиля отстутсвует</th>
+                        <th th:text="${entity.registrationDate}">Дата постановки на учет отсутствует</th>
+                        <th th:text="${entity.owner}">ФИО владельца отсутствует</th>
+                    </tr>
                 </tbody>
             </table>
 
