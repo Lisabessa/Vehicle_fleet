@@ -6,6 +6,47 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <form th:object="${entity}" method="post" id="entityForm">
+        <table class="table_fields">
 
+            <tr th:if="${option == 'edit'}">
+                <td>ID автомобиля:</td>
+                <td>
+                    <input type="text" th:field="*{id}"  readonly="readonly" id="idCar">
+                </td>
+            </tr>
+            <tr>
+                <td>Модель автомобиля:</td>
+                <td>
+                    <input type="text" th:field="*{model}" maxlength="50" required id="model"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Год производства:</td>
+                <td>
+                    <input type="number" th:field="*{manufactureYear}" min="1" max="9999" required id="manufactureYear"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Дата постановки на учет:</td>
+                <td>
+                    <input type="date" th:field="*{registrationDate}" required id="registrationDate"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>ФИО владельца:</td>
+                <td>
+                    <input type="text" th:field="*{owner}" maxlength="100" required id="owner"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button th:if="${option == 'create'}" type="submit" class="green-btn" data-tooggle="button" aria-pressed="false" autocomplete="off">Сохранить</button>
+                    <button th:if="${option == 'edit'}" type="submit" class="green-btn" data-tooggle="button" aria-pressed="false" autocomplete="off">Изменить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>

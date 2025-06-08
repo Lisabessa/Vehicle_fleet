@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информационная система автопарка "Toretto"</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="container_main">
+    <div class="container_info">
+        <h1 th:if="${option == 'create'}">Добавить новый автомобиль</h1>
+        <h1 th:if="${option == 'edit'}">Отредактировать данные автомобиля</h1>
+
+        <div th:replace="entity_form :: form(entity=${entity})"></div>
+        <a th:href="@{/}"><button class="red-btn">Назад</button></a>
+    </div>
+</div>
+
+<th:block th:if="${option == 'create'}">
+    <script th:src="@{/js/car_creation.js}"></script>
+</th:block>
+
+<th:block th:if="${option == 'edit'}">
+    <script th:src="@{/js/car_edition.js}"></script>
+</th:block>
+
+</body>
+</html>

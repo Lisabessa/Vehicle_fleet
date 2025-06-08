@@ -19,9 +19,18 @@ public class CarService {
         return repo.SearchCar(keyword);
     }
 
+    public Car getCar(String id) {
+        return repo.findById(Long.valueOf(id)).get();
+    }
     public Optional<Car> getCar(Long id) {
         return repo.findById(id);
     }
+
+    public void createCar(Car car) {
+        repo.save(car);
+    }
+
+    public void updateCar(Car car) { repo.save(car); }
 
     public void delete(Long id) {repo.deleteById(id);}
 }
