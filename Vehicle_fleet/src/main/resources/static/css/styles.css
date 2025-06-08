@@ -27,3 +27,33 @@ h1 {
     border-collapse: collapse;
     margin-top: 20px;
 }
+
+.right_buttons-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 5px;
+    gap: 3px;
+}
+
+.bottom_buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.green-btn{
+    background-color: #4CAF50;
+}
+
+.red-btn{
+    background-color: #cf102e;
+}
+
+
+.cyan-btn{
+    background-color: #56c4ab;
+}
+
+.purple-btn{
+    background-color: #8e59c3;
+}

@@ -28,12 +28,25 @@
                         <th th:text="${entity.manufactureYear}">Год производства автомобиля отстутсвует</th>
                         <th th:text="${entity.registrationDate}">Дата постановки на учет отсутствует</th>
                         <th th:text="${entity.owner}">ФИО владельца отсутствует</th>
+
+                        <td>
+                            <div class="right_buttons-container">
+                                <a th:href="@{${editLink}+${entity.id}}"><button type="button" class="green-btn">Редактировать</button></a>
+                                <a th:idEntity="${entity.id}" onclick="deleteEntity(this)"><button type="button" class="red-btn">Удалить</button></a>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
+            <div class="bottom_buttons-container">
+                <a th:href="@{${newLink}}"><button class="cyan-btn" type="button" aria-pressed="false" autocomplete="off">Добавить новый автомобиль</button></a>
+            </div>
+
         </div>
     </div>
+
+    <script th:src="@{/js/car_deletion.js}"></script>
 
 </body>
 </html>
