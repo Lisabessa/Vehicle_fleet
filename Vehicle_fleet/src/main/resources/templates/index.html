@@ -9,8 +9,18 @@
     <div class="container_main">
         <div class="container_info">
             <h1>Информационная система автопарка "Toretto"</h1>
-            <h2>Автомобили</h2>
-            <table class="table">
+
+            <div class="search-container">
+                <h4 >Поиск автомобиля по любому критерию:</h4>
+
+                <form th:action="@{/}" class="search-form">
+                    <input type="text" name="keyword" id="keyword"  placeholder="Введите искомое значение" th:value="${keyword}" required/>
+                    <input type="submit" class="green-btn" value="Поиск"/>
+                    <input type="button" class="red-btn" value="Очистить" id="btnClear" onclick="clearSearch()"/>
+                </form>
+            </div>
+
+            <table id="1" class="table">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -39,12 +49,31 @@
                 </tbody>
             </table>
 
+            <p>
+                <script type="text/javascript">
+                    function getRowsColumn() {
+                        let table = document.getElementById('1')
+                        let tBody = table.querySelector('tbody')
+                        const count = tBody.querySelectorAll('tr').length;
+                        document.write('Количество записей в таблице: ' + count)
+                    }
+
+                    getRowsColumn()
+                </script>
+            </p>
+
             <div class="bottom_buttons-container">
                 <a th:href="@{${newLink}}"><button class="cyan-btn" type="button" aria-pressed="false" autocomplete="off">Добавить новый автомобиль</button></a>
             </div>
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        function clearSearch() {
+            window.location = "[[@{/}]]";
+        }
+    </script>
 
     <script th:src="@{/js/car_deletion.js}"></script>
 
