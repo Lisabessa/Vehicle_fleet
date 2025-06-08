@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [{
                 label: 'Количество машин',
                 data: dataCounts,
-                backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: '#bc8bec',
+                borderColor: '#9842ed',
                 borderWidth: 1,
                 borderRadius: 4
             }]

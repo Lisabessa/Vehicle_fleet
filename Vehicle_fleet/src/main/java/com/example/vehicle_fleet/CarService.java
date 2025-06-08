@@ -38,11 +38,6 @@ public class CarService {
 
     public void delete(Long id) {repo.deleteById(id);}
 
-    public List<Car> getAllCarsSortedByManufactureYear(boolean ascending) {
-        Sort sort = ascending ? Sort.by("manufactureYear").ascending() : Sort.by("manufactureYear").descending();
-        return repo.findAll(sort);
-    }
-
     public Map<LocalDate, Long> countCarsByRegistrationDate() {
         List<Car> cars = repo.findAll();
 
