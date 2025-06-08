@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarService {
@@ -38,5 +41,15 @@ public class CarService {
     public List<Car> getAllCarsSortedByManufactureYear(boolean ascending) {
         Sort sort = ascending ? Sort.by("manufactureYear").ascending() : Sort.by("manufactureYear").descending();
         return repo.findAll(sort);
+    }
+
+    public Map<LocalDate, Long> countCarsByRegistrationDate() {
+        List<Car> cars = repo.findAll();
+
+        Map<LocalDate, Long> countsByDate = cars.stream()
+                .filter(car -> car.getRegistrationDate() != null)
+                .collect(Collectors.groupingBy(Car::getRegistrationDate, Collectors.counting()));
+
+        return countsByDate;
     }
 }

@@ -2,16 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Информационная система автопарка "Toretto"</title>
+    <title>Информационная система автопарка</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container_main">
         <div class="container_info">
-            <h1>Информационная система автопарка "Toretto"</h1>
+            <h1>Информационная система автопарка</h1>
+
+            <h4>Гистограмма количества машин по дням регистрации</h4>
+            <div class="chartContainer">
+                <canvas id="carsHistogram"></canvas>
+            </div>
 
             <div class="search-container">
-                <h4 >Поиск автомобиля по любому критерию:</h4>
+                <h4>Поиск автомобиля по любому критерию:</h4>
 
                 <form th:action="@{/}" class="search-form">
                     <input type="text" name="keyword" id="keyword"  placeholder="Введите искомое значение" th:value="${keyword}" required/>
@@ -21,15 +26,11 @@
             </div>
 
             <div class="sort-container">
-                <span>Сортировать по году выпуска:</span>
-                <a th:href="@{/(keyword=${keyword}, sort='asc')}"
-                   th:classappend="${sort == 'asc'} ? 'active-sort' : ''"
-                   style="margin-left: 10px; text-decoration: none; color: green; font-weight: bold;">
+                <h4>Сортировать по году выпуска:</h4>
+                <a th:href="@{/(keyword=${keyword}, sort='asc')}">
                     По возрастанию
                 </a> |
-                <a th:href="@{/(keyword=${keyword}, sort='desc')}"
-                   th:classappend="${sort == 'desc'} ? 'active-sort' : ''"
-                   style="margin-left: 10px; text-decoration: none; color: green; font-weight: bold;">
+                <a th:href="@{/(keyword=${keyword}, sort='desc')}">
                     По убыванию
                 </a>
             </div>
@@ -90,6 +91,16 @@
     </script>
 
     <script th:src="@{/js/car_deletion.js}"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.chartLabels = /*[[${dates}]]*/ [];
+        window.chartDataCounts = /*[[${counts}]]*/ [];
+        /*]]>*/
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="@{/js/cars_histogram.js}"></script>
 
 </body>
 </html>

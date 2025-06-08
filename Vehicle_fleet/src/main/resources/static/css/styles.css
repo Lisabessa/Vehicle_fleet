@@ -91,10 +91,9 @@ h1 {
     box-sizing: border-box;
 }
 
-.search-container h4 {
+.container_info h4 {
     margin-bottom: 5px;
     text-align: center;
-    color: #555;
 }
 
 .search-form {
@@ -120,10 +119,6 @@ h1 {
     margin-top: 20px;
 }
 
-.sort-container span {
-    font-weight: 600;
-}
-
 .sort-container a {
     margin: 0 10px;
     text-decoration: none;
@@ -133,3 +128,9 @@ h1 {
     transition: color 0.3s ease;
 }
 
+.chartContainer{
+    width: 100%;
+    max-width: 1000px;
+    height: 300px;
+    margin: auto;
+}

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class AppController {
@@ -36,9 +39,22 @@ public class AppController {
             });
         }
 
+        Map<LocalDate, Long> countsByDate = carService.countCarsByRegistrationDate();
+        List<LocalDate> sortedDates = countsByDate.keySet().stream()
+                .sorted()
+                .collect(Collectors.toList());
+        List<String> dateLabels = sortedDates.stream()
+                .map(LocalDate::toString)
+                .collect(Collectors.toList());
+        List<Long> counts = sortedDates.stream()
+                .map(countsByDate::get)
+                .collect(Collectors.toList());
+
         mav.addObject("listEntities", listCars);
         mav.addObject("keyword", keyword);
         mav.addObject("sort", sort);
+        mav.addObject("dates", dateLabels);
+        mav.addObject("counts", counts);
         mav.addObject("editLink", "/editCar/");
         mav.addObject("newLink", "/newCar");
         return mav;
