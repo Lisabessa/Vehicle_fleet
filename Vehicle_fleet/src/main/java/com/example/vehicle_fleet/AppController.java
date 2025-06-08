@@ -61,7 +61,7 @@ public class AppController {
     }
 
     @RequestMapping("/newCar")
-    public ModelAndView ViewNewUserPage(Model model) {
+    public ModelAndView ViewNewCarPage(Model model) {
         ModelAndView mav = new ModelAndView("change_entity");
         Car car = new Car();
         mav.addObject("entity", car);
@@ -70,7 +70,7 @@ public class AppController {
     }
 
     @RequestMapping("/editCar/{id}")
-    public ModelAndView editUser(@PathVariable(name = "id") Long id) {
+    public ModelAndView editCar(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("change_entity");
         Car car = carService.getCar(String.valueOf(id));
         mav.addObject("entity", car);

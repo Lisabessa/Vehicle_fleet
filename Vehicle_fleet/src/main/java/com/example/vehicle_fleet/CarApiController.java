@@ -21,6 +21,12 @@ public class CarApiController {
         return carService.listAll(keyword);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Car> getCarByIdMethod(@PathVariable Long id) {
+        Optional<Car> car = carService.getCar(id);
+        return car.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<?> createCarMethod(@Valid @RequestBody Car car) {
 
@@ -47,13 +53,6 @@ public class CarApiController {
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Произошла ошибка при обновлении данных автомобиля.");
         }
-    }
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Car> getCarByIdMethod(@PathVariable Long id) {
-        Optional<Car> car = carService.getCar(id);
-        return car.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
