@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -17,11 +18,27 @@ public class AppController {
     private CarService carService;
 
     @RequestMapping("/")
-    public ModelAndView index(Model model, @Param("keyword") String keyword) {
+    public ModelAndView index(
+            Model model,
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "sort", required = false, defaultValue = "asc") String sort) {
         ModelAndView mav = new ModelAndView("index");
         List<Car> listCars = carService.listAll(keyword);
+
+        if (sort != null && !sort.isEmpty()) {
+            boolean ascending = "asc".equalsIgnoreCase(sort);
+            listCars.sort((c1, c2) -> {
+                if (c1.getManufactureYear() == null) return 1;
+                if (c2.getManufactureYear() == null) return -1;
+                return ascending
+                        ? c1.getManufactureYear().compareTo(c2.getManufactureYear())
+                        : c2.getManufactureYear().compareTo(c1.getManufactureYear());
+            });
+        }
+
         mav.addObject("listEntities", listCars);
         mav.addObject("keyword", keyword);
+        mav.addObject("sort", sort);
         mav.addObject("editLink", "/editCar/");
         mav.addObject("newLink", "/newCar");
         return mav;

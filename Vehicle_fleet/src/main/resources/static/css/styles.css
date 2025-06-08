@@ -8,12 +8,12 @@
 
 .container_info {
     width: 90%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 100px auto 0;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 h1 {
@@ -42,20 +42,20 @@ h1 {
 }
 
 .green-btn{
-    background-color: #4CAF50;
+    background-color: #74dd79;
 }
 
 .red-btn{
-    background-color: #cf102e;
+    background-color: #e85068;
 }
 
 
 .cyan-btn{
-    background-color: #56c4ab;
+    background-color: #6edcc3;
 }
 
 .purple-btn{
-    background-color: #8e59c3;
+    background-color: #bc8bec;
 }
 
 .table_fields{
@@ -91,14 +91,8 @@ h1 {
     box-sizing: border-box;
 }
 
-.search-container {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .search-container h4 {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     text-align: center;
     color: #555;
 }
@@ -109,7 +103,6 @@ h1 {
     gap: 10px;
 }
 
-
 .search-container input[type="text"] {
     width: 80%;
     padding: 12px 20px;
@@ -118,3 +111,25 @@ h1 {
     border-radius: 4px;
     outline: none;
 }
+
+.sort-container {
+    text-align: center;
+    font-size: 16px;
+    color: #34495e;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.sort-container span {
+    font-weight: 600;
+}
+
+.sort-container a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #0e5ae8;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+

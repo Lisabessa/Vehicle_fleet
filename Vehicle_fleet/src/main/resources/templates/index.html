@@ -15,9 +15,23 @@
 
                 <form th:action="@{/}" class="search-form">
                     <input type="text" name="keyword" id="keyword"  placeholder="Введите искомое значение" th:value="${keyword}" required/>
-                    <input type="submit" class="green-btn" value="Поиск"/>
-                    <input type="button" class="red-btn" value="Очистить" id="btnClear" onclick="clearSearch()"/>
+                    <input type="submit" class="cyan-btn" value="Поиск"/>
+                    <input type="button" class="purple-btn" value="Очистить" id="btnClear" onclick="clearSearch()"/>
                 </form>
+            </div>
+
+            <div class="sort-container">
+                <span>Сортировать по году выпуска:</span>
+                <a th:href="@{/(keyword=${keyword}, sort='asc')}"
+                   th:classappend="${sort == 'asc'} ? 'active-sort' : ''"
+                   style="margin-left: 10px; text-decoration: none; color: green; font-weight: bold;">
+                    По возрастанию
+                </a> |
+                <a th:href="@{/(keyword=${keyword}, sort='desc')}"
+                   th:classappend="${sort == 'desc'} ? 'active-sort' : ''"
+                   style="margin-left: 10px; text-decoration: none; color: green; font-weight: bold;">
+                    По убыванию
+                </a>
             </div>
 
             <table id="1" class="table">

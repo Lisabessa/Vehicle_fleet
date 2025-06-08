@@ -1,6 +1,7 @@
 package com.example.vehicle_fleet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,4 +34,9 @@ public class CarService {
     public void updateCar(Car car) { repo.save(car); }
 
     public void delete(Long id) {repo.deleteById(id);}
+
+    public List<Car> getAllCarsSortedByManufactureYear(boolean ascending) {
+        Sort sort = ascending ? Sort.by("manufactureYear").ascending() : Sort.by("manufactureYear").descending();
+        return repo.findAll(sort);
+    }
 }
